@@ -1319,7 +1319,8 @@ img { -webkit-user-drag: none; user-select: none; -webkit-user-select: none; -we
     // Start silent, fade in over 2 s to the 30% level, and fade out over the last 3 s of the clip.
     player.setVolume(0);
     player.unMute();
-    player.seekTo(CLIP_START, true);
+    // The player is already cued at CLIP_START, so only seek if it has drifted (a needless seek causes a stutter).
+    if (Math.abs(player.getCurrentTime() - CLIP_START) > 1) player.seekTo(CLIP_START, true);
     player.playVideo();
     clearInterval(fadeTimer);
     fadeTimer = setInterval(function () {
@@ -1507,9 +1508,13 @@ img { -webkit-user-drag: none; user-select: none; -webkit-user-select: none; -we
     setTimeout(function () { c.close(); }, 1800);
   }
 
-  var chosen = false, speechDone = false, pageShown = false;
-  // Rasputin starts only after the spoken line has finished AND the gate has dissolved into the page.
-  function tryStart() { if (speechDone && pageShown) startMusic(); }
+  var chosen = false, speechDone = false, pageShown = false, musicStarted = false;
+  // Rasputin starts only after the spoken line has finished AND the gate has dissolved into the page, and only once.
+  function tryStart() {
+    if (musicStarted || !speechDone || !pageShown) return;
+    musicStarted = true;
+    startMusic();
+  }
   function enter(pill) {
     if (chosen) return;
     chosen = true;
