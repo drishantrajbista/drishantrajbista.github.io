@@ -1,3 +1,7 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Ishant Raj Bista</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -631,10 +635,142 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
   *, *::before, *::after { animation: none !important; transition: none !important; }
   html { scroll-behavior: auto; }
 }
+img { -webkit-user-drag: none; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; }
+.music { position: static; margin: 16px 0 0; width: 208px; padding: 4px; border-radius: 10px; background: var(--bg); color: var(--ink); border: 1px solid var(--muted); box-shadow: 0 6px 24px rgba(0,0,0,.25); font-size: 13px; }
+.music[hidden] { display: none; }
+.music-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 4px; }
+.music-top span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.music-top button { flex: none; width: 24px; height: 24px; border: 0; border-radius: 6px; background: transparent; color: var(--muted); font-size: 16px; line-height: 1; cursor: pointer; }
+.music-top button:hover { color: var(--accent); }
+.music-frame { width: 200px; height: 200px; border-radius: 8px; overflow: hidden; background: #000; }
+.music-frame iframe { width: 200px; height: 200px; border: 0; display: block; }
+.mx { position: fixed; inset: 0; z-index: 1000; display: flex; overflow-x: hidden; overflow-y: auto; overscroll-behavior: contain; padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left); background: #000; color: #b8ffce; font-family: ui-monospace, "Cascadia Mono", Consolas, monospace; transition: opacity .8s ease, filter .8s ease, transform .8s ease; }
+.mx-rain { position: absolute; inset: 0; width: 100%; height: 100%; opacity: .55; }
+.mx-box { position: relative; z-index: 1; margin: auto; width: min(720px, 92vw); padding: 28px 16px; text-align: center; background: radial-gradient(closest-side, rgba(0,0,0,.82), rgba(0,0,0,0)); }
+.mx-type { min-height: 3.2em; margin: 0 0 20px; font-size: clamp(15px, 2.4vw, 20px); line-height: 1.6; text-shadow: 0 0 10px rgba(40,255,110,.6); }
+.mx-type::after { content: "\2588"; margin-left: 2px; animation: mx-blink 1s steps(1) infinite; }
+.mx-pills { display: flex; justify-content: center; gap: clamp(12px, 6vw, 56px); flex-wrap: wrap; }
+.mx-choice { position: relative; display: flex; flex-direction: column; align-items: center; width: 200px; padding: 10px 8px 14px; border: 1px solid transparent; border-radius: 14px; background: transparent; color: inherit; font: inherit; cursor: pointer; animation: mx-rise .9s cubic-bezier(.2,.8,.2,1) backwards; transform-style: preserve-3d; transform: translate(var(--dx, 0px), var(--dy, 0px)) perspective(800px) translateY(var(--ty, 0px)) scale(var(--sc, 1)) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); transition: transform .18s ease-out, border-color .25s ease, background .25s ease, opacity .5s ease; }
+.mx-red { animation-delay: .35s; }
+.mx-blue { animation-delay: .15s; }
+.mx-choice:hover, .mx-choice:focus-visible { --ty: -6px; --sc: 1.04; outline: none; background: rgba(255,255,255,.04); }
+.mx-red:hover, .mx-red:focus-visible { border-color: rgba(255,70,70,.7); }
+.mx-blue:hover, .mx-blue:focus-visible { border-color: rgba(90,140,255,.7); }
+.mx-choice b { margin-top: 6px; font-size: 18px; letter-spacing: .08em; text-transform: uppercase; }
+.mx-red b { color: #ff5a5a; text-shadow: 0 0 12px rgba(255,40,40,.7); }
+.mx-blue b { color: #6f9bff; text-shadow: 0 0 12px rgba(60,110,255,.7); }
+.mx-choice span { margin-top: 4px; font-size: 13px; color: #9fbfa9; }
+.mx-hand { width: 170px; height: auto; overflow: visible; transform: translateZ(40px); animation: mx-float 3.4s ease-in-out infinite; }
+.mx-choice b { transform: translateZ(24px); }
+.mx-choice span { transform: translateZ(14px); }
+.mx-pill-g { transition: transform .9s cubic-bezier(.5,0,.2,1), opacity .9s ease; }
+.fn { transform-box: fill-box; transform-origin: 50% 100%; transition: transform .45s cubic-bezier(.3,1.4,.5,1); }
+.mx-cast { animation: mx-cast 1.8s ease-in-out infinite; }
+/* fingers curl in around the pill on hover, like a hand about to close */
+.mx-choice:hover .f1, .mx-choice:focus-visible .f1 { transform: rotate(9deg) scaleY(.94); }
+.mx-choice:hover .f2, .mx-choice:focus-visible .f2 { transform: rotate(4deg) scaleY(.9); }
+.mx-choice:hover .f3, .mx-choice:focus-visible .f3 { transform: rotate(-4deg) scaleY(.9); }
+.mx-choice:hover .f4, .mx-choice:focus-visible .f4 { transform: rotate(-9deg) scaleY(.94); }
+.mx-choice:hover .fth, .mx-choice:focus-visible .fth { transform: rotate(14deg); }
+/* pick: the hand closes into a fist and the pill flies toward you, the other hand drops away */
+.mx-picked .f1 { transform: rotate(14deg) scaleY(.55); }
+.mx-picked .f2 { transform: rotate(6deg) scaleY(.5); }
+.mx-picked .f3 { transform: rotate(-6deg) scaleY(.5); }
+.mx-picked .f4 { transform: rotate(-14deg) scaleY(.55); }
+.mx-picked .fth { transform: rotate(24deg) scaleY(.8); }
+.mx-picked .mx-pill-g { animation: none; transform: translateY(-34px) scale(4.2); opacity: 0; }
+.mx-picked { --sc: 1.12; --ty: -10px; }
+.mx-dim { --sc: .85; --ty: 30px; opacity: 0; }
+.mx-dim .mx-hand, .mx-picked .mx-hand { animation: none; }
+.mx { transition: opacity .8s ease, filter .8s ease, transform .8s ease, background .6s ease; }
+.mx:not(.mx-live) .mx-box { display: none; }
+/* Red pill: red-tinted rain, then the "WAKE UP TO REALITY" screen */
+.mx-rain { transition: filter 1s ease; }
+.mx-chose-red .mx-rain { filter: hue-rotate(-105deg) saturate(2.4) brightness(1.15); }
+.mx-chose-red .mx-box { opacity: 0; transition: opacity .6s ease 1.4s; }
+.mx-flash { position: absolute; inset: 0; z-index: 7; display: grid; place-items: center; padding: 0 16px; text-align: center; opacity: 0; pointer-events: none; background: radial-gradient(closest-side, rgba(120,0,0,.55), rgba(0,0,0,0)); }
+.mx-flash span { position: relative; font-size: clamp(26px, 7vw, 76px); font-weight: 700; letter-spacing: .14em; color: #ff3b3b; text-shadow: 0 0 18px rgba(255,30,30,.85), 0 0 48px rgba(255,0,0,.55); }
+.mx-flash span::before, .mx-flash span::after { content: attr(data-t); position: absolute; inset: 0; opacity: .75; mix-blend-mode: screen; }
+.mx-flash span::before { color: #00e5ff; transform: translateX(-3px); animation: mx-glitch-a .45s steps(2) infinite; }
+.mx-flash span::after { color: #ff0050; transform: translateX(3px); animation: mx-glitch-b .45s steps(2) infinite; }
+.mx-chose-red .mx-flash { animation: mx-flashin .15s linear 1.45s both; }
+.mx-chose-red .mx-flash span { animation: mx-slam 1.3s cubic-bezier(.2, .9, .3, 1) 1.5s both; }
+@keyframes mx-flashin { from { opacity: 0; } to { opacity: 1; } }
+@keyframes mx-slam {
+  0% { transform: scale(1.7); letter-spacing: .45em; opacity: 0; filter: blur(8px); }
+  9% { transform: scale(.96); letter-spacing: .14em; opacity: 1; filter: none; }
+  15% { transform: translate(-7px, 5px); }
+  21% { transform: translate(6px, -5px); }
+  28% { transform: translate(-4px, 3px); }
+  36% { transform: translate(3px, -2px); }
+  48%, 100% { transform: none; opacity: 1; filter: none; }
+}
+@keyframes mx-glitch-a { 0% { clip-path: inset(10% 0 60% 0); } 50% { clip-path: inset(55% 0 12% 0); } 100% { clip-path: inset(30% 0 35% 0); } }
+@keyframes mx-glitch-b { 0% { clip-path: inset(62% 0 8% 0); } 50% { clip-path: inset(8% 0 62% 0); } 100% { clip-path: inset(40% 0 25% 0); } }
+@media (prefers-reduced-motion: reduce) { .mx-chose-red .mx-flash { opacity: 1; } .mx-flash span::before, .mx-flash span::after { display: none; } }
+.mx-wake { position: absolute; inset: 0; z-index: 5; border: 0; background: transparent; color: #9dffbb; font: inherit; font-size: clamp(14px, 2.4vw, 20px); letter-spacing: .22em; text-transform: uppercase; text-shadow: 0 0 12px rgba(40,255,110,.7); cursor: pointer; animation: mx-blink 1.6s ease-in-out infinite; }
+.mx-live .mx-wake { display: none; }
+.mx-red { z-index: 2; }
+.mx-blue { z-index: 1; }
+.mx-pills { position: relative; padding-top: 96px; }
+.mx-morph { position: absolute; left: 50%; top: 0; width: 400px; height: auto; margin-left: -200px; overflow: visible; z-index: 0; pointer-events: none; filter: drop-shadow(0 0 8px rgba(40,255,110,.22)); animation: mx-breathe 5s ease-in-out infinite; }
+.mx-head { transform: rotate(calc(var(--look, 0) * 7deg)); transform-origin: 200px 88px; transition: transform .35s ease-out; }
+.mx-glint { animation: mx-glint 4.5s ease-in-out infinite; }
+.mx-morph .arm-blue, .mx-morph .arm-red { transition: opacity .6s ease; }
+@keyframes mx-breathe { 50% { transform: translateY(-3px); } }
+@keyframes mx-glint { 0%, 70%, 100% { opacity: .35; } 80% { opacity: 1; } }
+.mx-devil { opacity: 0; transition: opacity .2s ease; }
+.mx-grin .mx-devil { opacity: 1; }
+.mx-grin .mx-mouth { opacity: 0; }
+.mx-grin .mx-head { transform: rotate(calc(var(--look, 0) * 7deg)) translateY(2px) scale(1.04); }
+.mx-red .mx-hand { animation-delay: -1.2s; }
+.mx-pill-g { animation: mx-pulse 1.8s ease-in-out infinite; transform-origin: 100px 104px; }
+.mx-red .mx-pill-g { filter: drop-shadow(0 0 7px #ff2a2a); }
+.mx-blue .mx-pill-g { filter: drop-shadow(0 0 7px #2a6bff); }
+.mx-hint { margin: 22px 0 0; font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: #6fa383; animation: mx-blink 1.6s ease-in-out infinite; }
+.mx-leave { opacity: 0; filter: blur(6px) brightness(2); transform: scale(1.06); pointer-events: none; }
+.mx-chose-red { background: #1a0000; }
+.mx-chose-blue { background: #00081a; }
+/* Tablets */
+@media (max-width: 1024px) { .mx-choice { width: 190px; } .mx-hand { width: 160px; } }
+/* Phones: two pills side by side, smaller hands and text */
+@media (max-width: 600px) {
+  .mx-box { padding: 20px 8px; }
+  .mx-type { min-height: 4.8em; margin-bottom: 14px; }
+  .mx-pills { gap: 8px; flex-wrap: nowrap; }
+  .mx-choice { width: calc(50% - 4px); max-width: 170px; padding: 8px 4px 12px; }
+  .mx-hand { width: min(120px, 30vw); }
+  .mx-choice b { font-size: 15px; }
+  .mx-choice span { font-size: 12px; }
+  .mx-hint { margin-top: 16px; font-size: 11px; }
+  .music { width: min(208px, calc(100vw - 32px)); }
+}
+@media (max-width: 600px) { .mx-pills { padding-top: 70px; } .mx-morph { width: 290px; margin-left: -145px; } }
+/* Short landscape screens (phones turned sideways) */
+@media (max-height: 480px) {
+  .mx-morph { display: none; }
+  .mx-pills { padding-top: 0; }
+  .mx-box { padding: 10px 8px; }
+  .mx-type { min-height: 2.4em; margin-bottom: 8px; font-size: 14px; }
+  .mx-hand { width: 84px; }
+  .mx-choice { width: 150px; padding: 4px; }
+  .mx-choice b { margin-top: 2px; font-size: 14px; }
+  .mx-choice span { display: none; }
+  .mx-hint { margin-top: 8px; }
+}
+/* Touch screens: no sticky hover lift, give a press effect instead */
+@media (hover: none) {
+  .mx-choice:hover { --ty: 0px; --sc: 1; background: transparent; border-color: transparent; }
+  .mx-choice:active { --sc: .96; background: rgba(255,255,255,.06); }
+}
+@keyframes mx-blink { 50% { opacity: 0; } }
+@keyframes mx-float { 0%, 100% { transform: translateZ(40px) rotateX(0deg); } 50% { transform: translateZ(40px) translateY(-8px) rotateX(8deg) rotate(-1.5deg); } }
+@keyframes mx-cast { 50% { opacity: .55; } }
+@keyframes mx-pulse { 50% { transform: scale(1.12); } }
+@keyframes mx-rise { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: none; } }
 </style>
 
-<div class="progress" aria-hidden="true"></div>
-<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+<div class="progress" aria-hidden="true"></div><svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
   <defs>
     <linearGradient id="g-icon" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" style="stop-color: var(--grad-a)"/>
@@ -1031,6 +1167,12 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
       <p>&#169; 2026 Ishant Raj Bista &#183; Dharan, Koshi Province, Nepal</p>
       <a href="#top">Back to top</a>
     </div>
+    <div class="in">
+      <aside class="music" id="music" aria-label="Background music">
+        <div class="music-top"><span>&#9835; Rasputin &middot; Boney M.</span><button type="button" id="music-close" aria-label="Close music player">&times;</button></div>
+        <div class="music-frame"><div id="yt-player"></div></div>
+      </aside>
+    </div>
   </div>
 </footer>
 
@@ -1159,5 +1301,322 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
     input.removeAttribute('aria-invalid');
     heading.focus();
   });
+})();
+(function () {
+  // Discourage casual image saving: no context menu or dragging on images.
+  function isImg(e) { return e.target && e.target.tagName === 'IMG'; }
+  document.addEventListener('contextmenu', function (e) { if (isImg(e)) e.preventDefault(); });
+  document.addEventListener('dragstart', function (e) { if (isImg(e)) e.preventDefault(); });
+})();
+(function () {
+  // Official Boney M. YouTube embed (BoneyMVEVO), one-minute clip (0:55 to 1:55) at 30% volume with fades.
+  // Browsers block sound until the visitor interacts, so the pill gate below supplies that first click.
+  var box = document.getElementById('music');
+  var player, ready = false, wanted = false, fadeTimer, CLIP_START = 55, CLIP_END = 115;
+  function startMusic() {
+    wanted = true;
+    if (!ready) return;
+    // Start silent, fade in over 2 s to the 30% level, and fade out over the last 3 s of the clip.
+    player.setVolume(0);
+    player.unMute();
+    player.seekTo(CLIP_START, true);
+    player.playVideo();
+    clearInterval(fadeTimer);
+    fadeTimer = setInterval(function () {
+      var t = player.getCurrentTime();
+      if (player.getPlayerState() === 0 || t >= CLIP_END) { clearInterval(fadeTimer); player.setVolume(0); return; }
+      var fade = Math.max(0, Math.min((t - CLIP_START) / 2, (CLIP_END - t) / 3, 1));
+      player.setVolume(Math.round(30 * fade));
+    }, 100);
+  }
+  window.onYouTubeIframeAPIReady = function () {
+    player = new YT.Player('yt-player', {
+      width: 200, height: 200, videoId: '16y1AkoZkmQ',
+      playerVars: { start: CLIP_START, end: CLIP_END, rel: 0, playsinline: 1, modestbranding: 1 },
+      events: { onReady: function () { ready = true; if (wanted) startMusic(); } }
+    });
+  };
+  var s = document.createElement('script');
+  s.src = 'https://www.youtube.com/iframe_api';
+  document.head.appendChild(s);
+  document.getElementById('music-close').addEventListener('click', function () {
+    if (player && player.stopVideo) player.stopVideo();
+    box.hidden = true;
+  });
+
+  // Matrix-style pill gate: shown on every load, one click enters the site and starts the music.
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function hand(color) {
+    // Shaded 3D-style hand: cylindrical finger gradients, knuckle creases, a rim light and a glow cast by the pill.
+    var red = color === 'red', c1 = red ? '#ff8a8a' : '#8ab0ff', c2 = red ? '#a80808' : '#0833a8', rgb = red ? '255,40,40' : '50,110,255';
+    var rim = 'rgba(' + rgb + ',.4)';
+    function finger(cls, x, y, h) {
+      return '<g class="fn ' + cls + '"><rect x="' + x + '" y="' + y + '" width="20" height="' + h + '" rx="10" fill="url(#fg-' + color + ')" stroke="' + rim + '" stroke-width="1.2"/>' +
+        '<path d="M' + (x + 4) + ' ' + (y + h * 0.45) + 'h12M' + (x + 4) + ' ' + (y + h * 0.72) + 'h12" stroke="rgba(0,0,0,.6)" stroke-width="1.4" stroke-linecap="round"/></g>';
+    }
+    return '<svg class="mx-hand" viewBox="0 0 200 190" aria-hidden="true" focusable="false">' +
+      '<defs>' +
+      '<linearGradient id="fg-' + color + '" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#030504"/><stop offset=".38" stop-color="#2b3a30"/><stop offset=".6" stop-color="#1a241d"/><stop offset="1" stop-color="#030504"/></linearGradient>' +
+      '<radialGradient id="pg-' + color + '" cx=".5" cy=".38" r=".75"><stop offset="0" stop-color="#34463a"/><stop offset=".6" stop-color="#121a15"/><stop offset="1" stop-color="#040605"/></radialGradient>' +
+      '<radialGradient id="gl-' + color + '"><stop offset="0" stop-color="rgba(' + rgb + ',.65)"/><stop offset="1" stop-color="rgba(' + rgb + ',0)"/></radialGradient>' +
+      '<linearGradient id="mxp-' + color + '" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="' + c1 + '"/><stop offset=".5" stop-color="' + (red ? '#e01515' : '#1f55e0') + '"/><stop offset="1" stop-color="' + c2 + '"/></linearGradient>' +
+      '</defs>' +
+      '<ellipse cx="100" cy="184" rx="56" ry="6" fill="rgba(0,0,0,.75)"/>' +
+      '<rect x="62" y="140" width="76" height="50" rx="14" fill="url(#pg-' + color + ')" stroke="' + rim + '" stroke-width="1.2"/>' +
+      finger('f1', 52, 22, 74) + finger('f2', 76, 8, 88) + finger('f3', 100, 12, 84) + finger('f4', 124, 30, 66) +
+      '<g transform="rotate(-32 31 115)"><g class="fn fth"><rect x="20" y="86" width="22" height="58" rx="11" fill="url(#fg-' + color + ')" stroke="' + rim + '" stroke-width="1.2"/></g></g>' +
+      '<rect x="50" y="70" width="100" height="84" rx="32" fill="url(#pg-' + color + ')" stroke="' + rim + '" stroke-width="1.4"/>' +
+      '<ellipse class="mx-cast" cx="100" cy="112" rx="62" ry="38" fill="url(#gl-' + color + ')"/>' +
+      '<g class="mx-pill-g">' +
+        '<ellipse cx="104" cy="120" rx="28" ry="5" fill="rgba(0,0,0,.6)"/>' +
+        '<g transform="rotate(-18 100 104)">' +
+          '<rect x="76" y="94" width="48" height="20" rx="10" fill="url(#mxp-' + color + ')"/>' +
+          '<rect x="82" y="96.5" width="34" height="4" rx="2" fill="rgba(255,255,255,.7)"/>' +
+          '<rect x="86" y="108" width="28" height="2.4" rx="1.2" fill="rgba(255,255,255,.2)"/>' +
+        '</g>' +
+      '</g></svg>';
+  }
+  // Original stylized silhouette of a bald figure in a long dark coat and round sunglasses, arms out to the two hands.
+  function morph() {
+    var rim = 'rgba(60,255,120,.28)';
+    return '<svg class="mx-morph" viewBox="0 0 400 340" aria-hidden="true" focusable="false">' +
+      '<defs>' +
+      '<radialGradient id="mh" cx=".4" cy=".3" r=".8"><stop offset="0" stop-color="#3a4d40"/><stop offset=".55" stop-color="#121a15"/><stop offset="1" stop-color="#030504"/></radialGradient>' +
+      '<linearGradient id="mc" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0f1611"/><stop offset="1" stop-color="#020302"/></linearGradient>' +
+      '<linearGradient id="ms" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#b8ffd0" stop-opacity=".95"/><stop offset=".5" stop-color="#1fe05a" stop-opacity=".3"/><stop offset="1" stop-color="#000" stop-opacity="0"/></linearGradient>' +
+      '</defs>' +
+      '<path class="arm-blue" d="M128 120 Q80 172 74 262" fill="none" stroke="url(#mc)" stroke-width="44" stroke-linecap="round"/>' +
+      '<path class="arm-red" d="M272 120 Q320 172 326 262" fill="none" stroke="url(#mc)" stroke-width="44" stroke-linecap="round"/>' +
+      '<path d="M104 120 Q104 96 150 92 L250 92 Q296 96 296 120 L306 332 L94 332 Z" fill="url(#mc)" stroke="' + rim + '" stroke-width="1.2"/>' +
+      '<path d="M176 94 L200 152 L224 94 Z" fill="#17211a"/><path d="M188 94 L200 126 L212 94 Z" fill="#050805"/>' +
+      '<rect x="184" y="72" width="32" height="28" rx="10" fill="#0a0f0c"/>' +
+      '<g class="mx-head">' +
+        '<ellipse cx="200" cy="52" rx="29" ry="34" fill="url(#mh)" stroke="' + rim + '" stroke-width="1.2"/>' +
+        '<rect x="169" y="45" width="26" height="14" rx="7" fill="#000"/><rect x="205" y="45" width="26" height="14" rx="7" fill="#000"/><rect x="194" y="49" width="12" height="3" fill="#000"/>' +
+        '<g class="mx-glint"><rect x="172" y="47.5" width="19" height="5" rx="2.5" fill="url(#ms)"/><rect x="208" y="47.5" width="19" height="5" rx="2.5" fill="url(#ms)"/></g>' +
+        '<path class="mx-mouth" d="M190 77 Q200 82 210 77" fill="none" stroke="rgba(0,0,0,.65)" stroke-width="1.6" stroke-linecap="round"/>' +
+        '<g class="mx-devil"><path d="M180 70 Q200 98 220 70 Q200 82 180 70 Z" fill="#030303"/><path d="M185 72 Q200 90 215 72 L212 74.5 Q200 86 188 74.5 Z" fill="#eaffea"/>' +
+        '<path d="M177 66 Q180 72 184 76 M223 66 Q220 72 216 76" fill="none" stroke="rgba(0,0,0,.7)" stroke-width="1.6" stroke-linecap="round"/>' +
+        '</g>' +
+      '</g></svg>';
+  }
+  var gate = document.createElement('div');
+  gate.className = 'mx';
+  gate.setAttribute('role', 'dialog');
+  gate.setAttribute('aria-modal', 'true');
+  gate.setAttribute('aria-label', 'Choose a pill to enter the portfolio');
+  gate.innerHTML =
+    '<canvas class="mx-rain" aria-hidden="true"></canvas>' +
+    '<div class="mx-box">' +
+      '<p class="mx-type" aria-live="polite"></p>' +
+      '<div class="mx-pills">' + morph() +
+        '<button type="button" class="mx-choice mx-blue" data-pill="blue">' + hand('blue') + '<b>Blue pill</b><span>Walk in, take it easy</span></button>' +
+        '<button type="button" class="mx-choice mx-red" data-pill="red">' + hand('red') + '<b>Red pill</b><span>Go deeper, sound on</span></button>' +
+      '</div>' +
+      '<p class="mx-hint">Click a pill to enter</p>' +
+    '</div>' +
+    '<div class="mx-flash" aria-hidden="true"><span data-t="WAKE UP TO REALITY">WAKE UP TO REALITY</span></div>' +
+    '<button type="button" class="mx-wake">Click anywhere to wake up</button>';
+  document.body.appendChild(gate);
+  document.documentElement.style.overflow = 'hidden';
+
+  var cv = gate.querySelector('.mx-rain'), ctx = cv.getContext('2d'), cols, drops, timer;
+  function sizeRain() {
+    cv.width = window.innerWidth; cv.height = window.innerHeight;
+    cols = Math.ceil(cv.width / 16); drops = [];
+    for (var i = 0; i < cols; i++) drops.push(Math.random() * -50);
+    ctx.fillStyle = '#000'; ctx.fillRect(0, 0, cv.width, cv.height);
+  }
+  function rain() {
+    ctx.fillStyle = 'rgba(0,0,0,.08)'; ctx.fillRect(0, 0, cv.width, cv.height);
+    ctx.font = '16px monospace';
+    for (var i = 0; i < cols; i++) {
+      ctx.fillStyle = Math.random() > .96 ? '#d6ffe2' : '#1fe05a';
+      ctx.fillText(String.fromCharCode(0x30A0 + Math.floor(Math.random() * 96)), i * 16, drops[i] * 16);
+      if (drops[i] * 16 > cv.height && Math.random() > .975) drops[i] = 0;
+      drops[i]++;
+    }
+  }
+  sizeRain();
+  window.addEventListener('resize', sizeRain);
+  if (!reduce) timer = setInterval(rain, 45);
+
+  var typeEl = gate.querySelector('.mx-type'), typeId = 0;
+  function typeLine(text) {
+    var id = ++typeId, k = 0;
+    if (reduce) { typeEl.textContent = text; return; }
+    (function tick() { if (id !== typeId) return; typeEl.textContent = text.slice(0, ++k); if (k < text.length) setTimeout(tick, 38); })();
+  }
+  var welcome = 'Welcome. Two doors, two pills. Choose how you want to see this portfolio.';
+
+  // Original dark ambient loop (Web Audio): sub drone, slow minor arpeggio with echo, heartbeat thump, digital blips.
+  var amb = { ctx: null, master: null, timer: null, on: true };
+  function startAmbient() {
+    var AC = window.AudioContext || window.webkitAudioContext;
+    if (amb.ctx || !AC) return;
+    var ctx = amb.ctx = new AC();
+    var master = amb.master = ctx.createGain();
+    master.gain.value = 0;
+    master.gain.linearRampToValueAtTime(.55, ctx.currentTime + 3);
+    master.connect(ctx.destination);
+    var lp = ctx.createBiquadFilter();
+    lp.type = 'lowpass'; lp.frequency.value = 260; lp.Q.value = 4; lp.connect(master);
+    [[55, 'sawtooth', .07], [55.35, 'sawtooth', .07], [82.41, 'triangle', .1]].forEach(function (d) {
+      var o = ctx.createOscillator(), g = ctx.createGain();
+      o.type = d[1]; o.frequency.value = d[0]; g.gain.value = d[2];
+      o.connect(g); g.connect(lp); o.start();
+    });
+    [110, 130.81, 164.81, 246.94].forEach(function (f) {
+      var o = ctx.createOscillator(), g = ctx.createGain();
+      o.type = 'sine'; o.frequency.value = f; g.gain.value = .02;
+      o.connect(g); g.connect(master); o.start();
+    });
+    var lfo = ctx.createOscillator(), lg = ctx.createGain();
+    lfo.frequency.value = .07; lg.gain.value = 140; lfo.connect(lg); lg.connect(lp.frequency); lfo.start();
+    var dly = ctx.createDelay(1), fb = ctx.createGain(), wet = ctx.createGain();
+    dly.delayTime.value = .375; fb.gain.value = .42; wet.gain.value = .6;
+    dly.connect(fb); fb.connect(dly); dly.connect(wet); wet.connect(master);
+    function blip(t, f, vol, type, dur) {
+      var o = ctx.createOscillator(), g = ctx.createGain();
+      o.type = type; o.frequency.value = f;
+      g.gain.setValueAtTime(.0001, t); g.gain.exponentialRampToValueAtTime(vol, t + .01); g.gain.exponentialRampToValueAtTime(.0001, t + dur);
+      o.connect(g); g.connect(master); g.connect(dly); o.start(t); o.stop(t + dur + .05);
+    }
+    function thump(t) {
+      var o = ctx.createOscillator(), g = ctx.createGain();
+      o.frequency.setValueAtTime(90, t); o.frequency.exponentialRampToValueAtTime(38, t + .25);
+      g.gain.setValueAtTime(.3, t); g.gain.exponentialRampToValueAtTime(.001, t + .45);
+      o.connect(g); g.connect(master); o.start(t); o.stop(t + .5);
+    }
+    var notes = [220, 329.63, 261.63, 329.63, 246.94, 392, 329.63, 261.63], step = 0, next = ctx.currentTime + .2;
+    amb.timer = setInterval(function () {
+      while (next < ctx.currentTime + .4) {
+        blip(next, notes[step % 8], .05, 'triangle', .5);
+        if (step % 8 === 0) thump(next);
+        if (Math.random() < .12) blip(next + .125, 1800 + Math.random() * 1800, .012, 'square', .06);
+        step++; next += .25;
+      }
+    }, 100);
+  }
+  function stopAmbient() {
+    if (!amb.ctx) return;
+    var c = amb.ctx;
+    amb.master.gain.setTargetAtTime(0, c.currentTime, .3);
+    clearInterval(amb.timer);
+    amb.ctx = null;
+    setTimeout(function () { c.close(); }, 1800);
+  }
+
+  var chosen = false, speechDone = false, pageShown = false;
+  // Rasputin starts only after the spoken line has finished AND the gate has dissolved into the page.
+  function tryStart() { if (speechDone && pageShown) startMusic(); }
+  function enter(pill) {
+    if (chosen) return;
+    chosen = true;
+    stopAmbient();
+    setTimeout(function () { speechDone = true; tryStart(); }, 10000); // safety net if speech never reports back
+    // Speak the line as the text slams in (browser text-to-speech).
+    setTimeout(function () {
+      if (!window.speechSynthesis) { speechDone = true; tryStart(); return; }
+      var voices = speechSynthesis.getVoices().filter(function (x) { return /^en/i.test(x.lang); });
+      // Prefer on-device voices (they honour the low pitch); online "Google" voices tend to ignore it.
+      function find(n, localOnly) {
+        return voices.filter(function (x) { return x.name.toLowerCase().indexOf(n) > -1 && (!localOnly || x.localService); })[0];
+      }
+      var names = ['david', 'mark', 'daniel', 'george', 'alex', 'male'];
+      var v = names.map(function (n) { return find(n, true); }).filter(Boolean)[0] || names.map(function (n) { return find(n, false); }).filter(Boolean)[0];
+      function say(text, rate, pitch) {
+        var u = new SpeechSynthesisUtterance(text);
+        u.lang = 'en-US'; u.pitch = pitch; u.rate = rate; u.volume = 1;
+        if (v) u.voice = v;
+        return u;
+      }
+      speechSynthesis.cancel();
+      // Dominant and heavy: very low pitch and slow, delivered as one continuous line.
+      var line = say('Wake up to reality.', .62, .1);
+      line.onend = line.onerror = function () { speechDone = true; tryStart(); };
+      speechSynthesis.speak(line);
+    }, reduce ? 0 : 1550);
+    gate.classList.add('mx-chose-' + pill, 'mx-grin');
+    Array.prototype.forEach.call(gate.querySelectorAll('.mx-choice'), function (b) {
+      b.classList.add(b.getAttribute('data-pill') === pill ? 'mx-picked' : 'mx-dim');
+    });
+    setTimeout(function () { gate.classList.add('mx-leave'); }, reduce ? 900 : 4300);
+    setTimeout(function () {
+      clearInterval(timer);
+      window.removeEventListener('resize', sizeRain);
+      gate.remove();
+      document.documentElement.style.overflow = '';
+      pageShown = true;
+      tryStart();
+    }, reduce ? 1000 : 5150);
+  }
+  // 3D tilt: the pill card leans toward the pointer.
+  gate.addEventListener('pointermove', function (e) {
+    var b = e.target.closest && e.target.closest('.mx-choice');
+    if (!b || chosen) return;
+    var r = b.getBoundingClientRect();
+    b.style.setProperty('--ry', ((e.clientX - r.left) / r.width - .5) * 24 + 'deg');
+    b.style.setProperty('--rx', -((e.clientY - r.top) / r.height - .5) * 24 + 'deg');
+  });
+  gate.addEventListener('pointerout', function (e) {
+    var b = e.target.closest && e.target.closest('.mx-choice');
+    if (b && !b.contains(e.relatedTarget)) { b.style.setProperty('--rx', '0deg'); b.style.setProperty('--ry', '0deg'); }
+  });
+  // The blue pill can never be taken: a mouse can't catch it, and a tap or key press makes it run.
+  var blue = gate.querySelector('.mx-blue'), red = gate.querySelector('.mx-red'), bdx = 0, bdy = 0;
+  // Target centre = layout position (ignores transforms) + our own offset, so it never lags behind the animation.
+  function bluePos() {
+    var p = blue.offsetParent.getBoundingClientRect(), w = blue.offsetWidth, h = blue.offsetHeight;
+    return { x: p.left + blue.offsetLeft + w / 2 + bdx, y: p.top + blue.offsetTop + h / 2 + bdy, w: w, h: h };
+  }
+  window.addEventListener('resize', function () {
+    if (!gate.isConnected) return;
+    bdx = bdy = 0;
+    blue.style.removeProperty('--dx'); blue.style.removeProperty('--dy');
+  });
+  function moveBlue(nx, ny) {
+    bdx += nx; bdy += ny;
+    blue.style.setProperty('--dx', bdx + 'px');
+    blue.style.setProperty('--dy', bdy + 'px');
+  }
+  // Run away from (px, py); jump = true forces a leap to a new spot (used for taps and key presses).
+  function dodge(px, py, jump) {
+    if (chosen || !gate.classList.contains('mx-live')) return;
+    var bp = bluePos(), cx = bp.x, cy = bp.y;
+    var r = { left: cx - bp.w / 2, right: cx + bp.w / 2, top: cy - bp.h / 2, bottom: cy + bp.h / 2, width: bp.w, height: bp.h };
+    var vx = cx - px, vy = cy - py, d = Math.hypot(vx, vy) || 1, R = 180;
+    if (d >= R && !jump) return;
+    var push = R - d + 40, nx = vx / d * push, ny = vy / d * push, m = 8;
+    var rr = red.getBoundingClientRect();
+    function hitsRed(left, top) { return left < rr.right + 14 && left + r.width > rr.left - 14 && top < rr.bottom + 14 && top + r.height > rr.top - 14; }
+    var inside = r.left + nx > m && r.right + nx < innerWidth - m && r.top + ny > m && r.bottom + ny < innerHeight - m;
+    if (!jump && inside && !hitsRed(r.left + nx, r.top + ny)) { moveBlue(nx, ny); return; }
+    // Cornered or blocked by the red pill: jump somewhere clear, away from the cursor.
+    for (var i = 0; i < 40; i++) {
+      var tx = m + r.width / 2 + Math.random() * (innerWidth - r.width - 2 * m), ty = m + r.height / 2 + Math.random() * (innerHeight - r.height - 2 * m);
+      if (Math.hypot(tx - px, ty - py) > 280 && !hitsRed(tx - r.width / 2, ty - r.height / 2)) { moveBlue(tx - cx, ty - cy); return; }
+    }
+  }
+  gate.addEventListener('pointermove', function (e) { if (e.pointerType === 'mouse') dodge(e.clientX, e.clientY, false); });
+  // The figure's head turns toward the pointer.
+  gate.addEventListener('pointermove', function (e) { gate.style.setProperty('--look', ((e.clientX / innerWidth - .5) * 2).toFixed(2)); });
+  gate.addEventListener('click', function (e) {
+    var b = e.target.closest && e.target.closest('.mx-choice');
+    if (!b) return;
+    if (b.getAttribute('data-pill') === 'blue') {
+      var br = blue.getBoundingClientRect();
+      dodge(e.clientX || br.left + br.width / 2, e.clientY || br.top + br.height / 2, true);
+    } else enter('red');
+  });
+  // First click wakes the gate: it starts the ambient loop (browsers need a click before any sound) and reveals the pills.
+  var wake = gate.querySelector('.mx-wake');
+  wake.addEventListener('click', function () {
+    gate.classList.add('mx-live');
+    startAmbient();
+    typeLine(welcome);
+    red.focus();
+  });
+  wake.focus();
 })();
 </script>
